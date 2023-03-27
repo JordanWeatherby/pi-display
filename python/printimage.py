@@ -3,7 +3,7 @@ import sys
 
 from PIL import Image, ImageDraw
 
-import epd5in83_V2
+import epd4in2
 from config import DISPLAY_H, DISPLAY_W
 from util_logging import set_logging_config
 from util_os import path_exists
@@ -49,7 +49,7 @@ if (len(sys.argv) > 1):
     try:
         if (path_exists(img)):
             # Init display and image
-            epd = epd5in83_V2.EPD()
+            epd = epd4in2.EPD()
             epd.init()
             Himage = Image.new('1', (DISPLAY_W, DISPLAY_H), 255)
             draw = ImageDraw.Draw(Himage)
@@ -78,7 +78,7 @@ if (len(sys.argv) > 1):
         print('{"code":500,"message":"IO Error.","data":' + str(e) + '}')
 
     except KeyboardInterrupt:
-        epd5in83_V2.epdconfig.module_exit()
+        epd4in2.epdconfig.module_exit()
         logging.exception('Keyboard interrupt')
         send_status(True, False, PREFIX + "Keyboard interrupt while displaying image.")
         print('{"code":400,"message":"Keyboard interrupt","data":null}')

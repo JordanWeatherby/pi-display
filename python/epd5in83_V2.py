@@ -37,7 +37,8 @@ import epdconfig
 EPD_WIDTH = 648
 EPD_HEIGHT = 480
 
-#logger = logging.getLogger(__name__)
+# logger = logging.getLogger(__name__)
+
 
 class EPD:
     def __init__(self):
@@ -72,7 +73,7 @@ class EPD:
     def ReadBusy(self):
         logging.debug("e-Paper busy")
         count = 0
-        while(epdconfig.digital_read(self.busy_pin) == 0 and count < 500):
+        while (epdconfig.digital_read(self.busy_pin) == 0 and count < 500):
             logging.debug("Waiting for display...")
             epdconfig.delay_ms(20)
             count += 1
@@ -132,21 +133,23 @@ class EPD:
         imwidth, imheight = image_monocolor.size
         pixels = image_monocolor.load()
         # logging.info("imwidth = %d, imheight = %d",imwidth,imheight)
-        if(imwidth == self.width and imheight == self.height):
+        if (imwidth == self.width and imheight == self.height):
             logging.debug("Vertical")
             for y in range(imheight):
                 for x in range(imwidth):
                     # Set the bits for the column of pixels at the current position.
                     if pixels[x, y] == 0:
-                        buf[int((x + y * self.width) / 8)] &= ~(0x80 >> (x % 8))
-        elif(imwidth == self.height and imheight == self.width):
+                        buf[int((x + y * self.width) / 8)
+                            ] &= ~(0x80 >> (x % 8))
+        elif (imwidth == self.height and imheight == self.width):
             logging.debug("Horizontal")
             for y in range(imheight):
                 for x in range(imwidth):
                     newx = y
                     newy = self.height - x - 1
                     if pixels[x, y] == 0:
-                        buf[int((newx + newy * self.width) / 8)] &= ~(0x80 >> (y % 8))
+                        buf[int((newx + newy * self.width) / 8)
+                            ] &= ~(0x80 >> (y % 8))
         return buf
 
     def display(self, image):

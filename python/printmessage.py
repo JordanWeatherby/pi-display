@@ -4,7 +4,7 @@ import textwrap
 
 from PIL import Image, ImageDraw, ImageFont
 
-import epd5in83_V2
+import epd4in2
 from config import DISPLAY_H, DISPLAY_W
 from fonts import NOTO_SANS_MONO, ROBOTO, ROBOTO_ITALIC
 from util_dates import print_last_updated
@@ -46,7 +46,7 @@ if (len(sys.argv) > 1):
     logging.info('Message: ' + msg)
     send_status(False, True, PREFIX + "Starting message display...")
     try:
-        epd = epd5in83_V2.EPD()
+        epd = epd4in2.EPD()
         epd.init()
         Himage = Image.new('1', (DISPLAY_W, DISPLAY_H), 255)
         draw = ImageDraw.Draw(Himage)
@@ -70,7 +70,7 @@ if (len(sys.argv) > 1):
         print('{"code":500,"message":"IO Error.","data":' + str(e) + '}')
 
     except KeyboardInterrupt:
-        epd5in83_V2.epdconfig.module_exit()
+        epd4in2.epdconfig.module_exit()
         logging.exception('Keyboard interrupt')
         send_status(True, False, PREFIX + "Keyboard interrupt while displaying message.")
         print('{"code":400,"message":"Keyboard interrupt","data":null}')

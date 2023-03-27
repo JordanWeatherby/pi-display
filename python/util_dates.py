@@ -1,48 +1,97 @@
 from datetime import datetime
+import calendar
 import logging
 
-from config import FONT_ITALIC_SM, FONT_LG, FONT_MD, COL_2_X, COL_2_Y
+from config import FONT_SM_SIZE, FONT_LG, FONT_MD, FONT_MD_SIZE, FONT_SM
 
-day_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+day_of_week = ['Monday', 'Tuesday', 'Wednesday',
+               'Thursday', 'Friday', 'Saturday', 'Sunday']
+
 
 def get_day_of_week_from_ms(ms):
     date = get_date_from_ms(ms)
     return get_day_of_week(date)
 
+
 def get_time_from_ms(ms):
     date = get_date_from_ms(ms)
-    return date.strftime('%-I:%M %p')
+    return date.strftime('%H:%M')
+
 
 def get_date_from_ms(ms):
     return datetime.utcfromtimestamp(ms)
 
+
 def get_day_of_week(date):
     return day_of_week[date.weekday()]
 
+
 def get_current_date():
     date = datetime.today()
-    return get_day_of_week(date) + ', \n' + date.strftime('%B %-d, %Y')
+    return get_day_of_week(date) + ', \n' + date.strftime("%d %B")
+
 
 def get_current_date_time():
     date = datetime.now()
     return date.strftime('%b %-d, %-I:%M:%S %p')
 
+
+def get_current_time():
+    date = datetime.now()
+    return date.strftime('%H:%M')
+
+
 def get_current_short_date_time():
     date = datetime.now()
-    return date.strftime('%Y%m%d') # yyyymmdd
+    return date.strftime('%Y%m%d')  # yyyymmdd
+
 
 def print_current_date():
     logging.info(get_current_date())
 
+
+def days_in_year():
+    return 365 + calendar.isleap(datetime.today().year)
+
+
+def get_year_percentage():
+    return (datetime.today().timetuple().tm_yday/days_in_year())
+
 # Print last updated date + time in bottom right of screen
-def print_last_updated(draw, DISPLAY_W, DISPLAY_H):
-    last_updated = 'Last updated ' + get_current_date_time()
-    width, height = FONT_ITALIC_SM.getsize(last_updated)
-    draw.text((DISPLAY_W - width - 20, DISPLAY_H - height), last_updated, font=FONT_ITALIC_SM, fill=0)
+
+
+def print_last_updated(draw, DISPLAY_W):
+    last_updated = get_current_time()
+    width = FONT_SM.getsize(last_updated)[0]
+    draw.text((DISPLAY_W - FONT_SM.getsize('updated')[0], 0),
+              'updated', font=FONT_SM, fill=0)
+    draw.text((DISPLAY_W - width - 5, FONT_SM_SIZE),
+              last_updated, font=FONT_SM, fill=0)
     return last_updated
 
 # Print day of the week and date in designated space
+
+
 def print_todays_date(draw):
     day_and_date = get_current_date().split('\n')
-    draw.text((COL_2_X, COL_2_Y), day_and_date[0], font=FONT_MD, fill=0)
-    draw.text((COL_2_X, COL_2_Y + 22), day_and_date[1], font=FONT_LG, fill=0)
+    draw.text((5, 0), day_and_date[0], font=FONT_MD, fill=0)
+    draw.text((5, 0 + FONT_MD_SIZE), day_and_date[1], font=FONT_LG, fill=0)
+
+
+def print_progress_bar(draw):
+    percentage = get_year_percentage()
+    percentageText = str(int(percentage*100))+'%'
+    text_width, text_height = FONT_SM.getsize(percentageText)
+    text_pad = 10
+
+    start_x = 5
+    start_y = 289
+    height = 10
+    width = 400 - start_x - text_pad - text_width
+
+    draw.rectangle((start_x, start_y, start_x + width,
+                   start_y + height), fill=None, outline=0, width=1)
+    draw.rectangle((start_x, start_y, start_x + (width*percentage),
+                   start_y + height), fill=0, outline=0, width=1)
+    draw.text((start_x + width + (text_pad/2), start_y),
+              percentageText, font=FONT_SM, anchor='lt', fill=0)

@@ -13,9 +13,16 @@ LOG_FILE = LOG_DIR + '/' + get_log_name()
 def set_logging_config():
     if (not path_exists(LOG_DIR)):
         mkdir(LOG_DIR)
-    logging.basicConfig(
-        level=logging.INFO, 
-        filename=LOG_FILE, 
-        encoding='utf-8', 
-        format='[%(levelname)s]%(asctime)s %(message)s', 
-        datefmt='%m/%d/%Y %I:%M:%S %p')
+    # logging.basicConfig(
+    #     level=logging.INFO, 
+    #     filename=LOG_FILE, 
+    #     encoding='utf-8', 
+    #     format='[%(levelname)s]%(asctime)s %(message)s', 
+    #     datefmt='%m/%d/%Y %I:%M:%S %p')
+    
+    # root_logger = logging.getLogger()
+    # root_logger.setLevel(logging.INFO)
+    # log_formatter = logging.Formatter("[%(levelname)s]%(asctime)s %(message)s")
+    # file_handler = logging.FileHandler()
+
+    # root_logger.addHandler(handler)

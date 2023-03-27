@@ -1,6 +1,6 @@
 import logging
 
-import epd5in83_V2
+import epd4in2
 from util_dates import get_current_date_time
 from util_logging import set_logging_config
 from util_server import is_display_busy, send_status
@@ -11,7 +11,7 @@ if (not is_display_busy()):
     send_status(False, True, "Starting display clear...")
     try:
         logging.info("********* Initializing display clear *********")
-        epd = epd5in83_V2.EPD()
+        epd = epd4in2.EPD()
         epd.init()
 
         logging.info("Clearing...")
@@ -31,7 +31,7 @@ if (not is_display_busy()):
 
     except KeyboardInterrupt:
         logging.warning("Ctrl + C:")
-        epd5in83_V2.epdconfig.module_exit()
+        epd4in2.epdconfig.module_exit()
         send_status(True, False, "Keyboard interrupt while clearing display.")
         exit(4)
 

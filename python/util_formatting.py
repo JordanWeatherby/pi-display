@@ -27,11 +27,15 @@ def get_xsmall_icon(path):
     return icon.resize((ICON_SIZE_XS, ICON_SIZE_XS))
 
 # Prints text starting at x until y then jumps to next line
+
+
 def print_md_text_in_coord(draw, x, y, text, max_y):
     # For some reason the real line height ends up being 25 instead of 22
     max_lines = floor((max_y - y) / (FONT_MD_SIZE + 3))
-    logging.debug('y: ' + str(y) + ', max_y: ' + str(max_y) + ', max_lines = ' + str(max_lines))
-    lines = textwrap.wrap(text, width=29, max_lines=max_lines, placeholder="...")
+    logging.debug('y: ' + str(y) + ', max_y: ' + str(max_y) +
+                  ', max_lines = ' + str(max_lines))
+    lines = textwrap.wrap(
+        text, width=29, max_lines=max_lines, placeholder="...")
     for line in lines:
         width, height = FONT_MD.getsize(line)
         draw.text((x, y), line, font=FONT_MD, fill=0)
@@ -41,6 +45,10 @@ def print_md_text_in_coord(draw, x, y, text, max_y):
 
 def get_sm_text_wrap(text):
     return textwrap.wrap(text, width=44, max_lines=3, placeholder="...")
+
+
+def trim_text(text, width):
+    return textwrap.wrap(text, width=width, max_lines=1, placeholder="...")[0]
 
 
 def print_sm_text_in_box(draw, x, y, text):
