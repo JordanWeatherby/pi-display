@@ -48,7 +48,12 @@ def get_sm_text_wrap(text):
 
 
 def trim_text(text, width):
-    return textwrap.wrap(text, width=width, max_lines=1, placeholder="...")[0]
+    # +2 is because something like trim_text("test", 3) 
+    # Can get split to "tes.." which doesn't make sense
+    if len(text) > width + 2:
+        return text[:width] + '..'
+    else:
+        return text
 
 
 def print_sm_text_in_box(draw, x, y, text):

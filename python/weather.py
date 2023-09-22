@@ -100,11 +100,11 @@ def get_weather_icon(weather_id):
         # 771	Squall	squalls	 50d
 
 
-def print_weather(Himage, draw):
+def draw_weather(Himage, draw):
     weather_data = get_weather_data()
     if weather_data is not None:
         x = 20
-        y = 95
+        y = 75
         weather_icon = get_absolute_path(weather_data.current_icon)
         if path_exists(weather_icon):
             # Current weather icon
@@ -120,7 +120,7 @@ def print_weather(Himage, draw):
                   font=FONT_LG, fill=0)   # Current temperature
 
         x = 180
-        y = 95
+        y = 75
         Himage.paste(
             get_small_icon(
                 get_absolute_path(

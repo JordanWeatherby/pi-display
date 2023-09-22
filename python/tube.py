@@ -24,11 +24,11 @@ def get_tube_status():
     return data
 
 
-def print_tube_status(draw):
+def draw_tube_status(draw):
     tube_data = get_tube_status()
 
     start_x = 5
-    start_y = 200
+    start_y = 180
     line_height = 17
     if tube_data is not None:
         for idx, line in enumerate(tube_data):
