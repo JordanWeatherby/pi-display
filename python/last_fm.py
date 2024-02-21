@@ -64,7 +64,7 @@ def draw_artist_info(Himage, draw, start_x, start_y):
             get_absolute_path(artist_icon)), (start_x, start_y + 39))
 
         draw.text((start_x + 23, start_y + 37),
-                  artist_name+' ('+artist_plays+')', font=FONT_SM, fill=0)
+                  u''+artist_name+' ('+artist_plays+')', font=FONT_SM, fill=0)
     else:
         logging.warn('Last.fm artist data was not retrieved.')
 
@@ -83,7 +83,7 @@ def draw_lastfm_track_info(Himage, draw, start_x, start_y):
             get_absolute_path(track_icon)), (start_x, start_y + 21))
 
         draw.text((start_x + 23, start_y + 18),
-                  track_name+' - '+track_artist+' ('+track_plays+')', font=FONT_SM, fill=0)
+                  u''+track_name+' - '+track_artist+' ('+track_plays+')', font=FONT_SM, fill=0)
     else:
         logging.warn('Last.fm track data was not retrieved.')
 
