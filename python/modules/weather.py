@@ -4,11 +4,11 @@ from PIL import Image
 from config import (COL_1_W, FONT_LG, FONT_MD, FONT_SM,
                     ICON_SIZE_SM, PADDING, PADDING_SM, weather)
 from config import weather
-from util_dates import get_day_of_week_from_ms, get_time_from_ms
-from util_fetch import fetch
-from util_formatting import get_small_icon
-from util_os import get_absolute_path, path_exists
-from weather_data import WeatherData, WeatherDay
+from utils.util_dates import get_day_of_week_from_ms, get_time_from_ms
+from utils.util_fetch import fetch
+from utils.util_formatting import get_small_icon
+from utils.util_os import get_absolute_path, path_exists
+from utils.weather_data import WeatherData, WeatherDay
 
 
 def get_weather_data():
@@ -60,35 +60,35 @@ def fetch_weather_data():
 def get_weather_icon(weather_id):
     # ID definitions: https://openweathermap.org/weather-conditions
     if (weather_id == 800):
-        return 'python/assets/icons/clear.png'
+        return '../python/assets/icons/clear.png'
     elif (weather_id >= 300 and weather_id < 400):
-        return 'python/assets/icons/drizzle.png'
+        return '../python/assets/icons/drizzle.png'
     elif (weather_id >= 500 and weather_id < 600):
-        return 'python/assets/icons/rain.png'
+        return '../python/assets/icons/rain.png'
     elif (weather_id == 801 or weather_id == 802):  # 11-50% clouds
-        return 'python/assets/icons/partly-cloudy.png'
+        return '../python/assets/icons/partly-cloudy.png'
     elif (weather_id >= 800 and weather_id < 900):
-        return 'python/assets/icons/cloudy.png'   # 50%+ clouds
+        return '../python/assets/icons/cloudy.png'   # 50%+ clouds
     elif (weather_id >= 210 and weather_id <= 221):
-        return 'python/assets/icons/thunderstorm.png'
+        return '../python/assets/icons/thunderstorm.png'
     elif (weather_id >= 200 and weather_id < 300):
-        return 'python/assets/icons/rain-thunderstorm.png'
+        return '../python/assets/icons/rain-thunderstorm.png'
     elif (weather_id == 600 or weather_id == 620):
-        return 'python/assets/icons/light-snow.png'
+        return '../python/assets/icons/light-snow.png'
     elif ((weather_id >= 611 and weather_id <= 613) or weather_id == 511):
-        return 'python/assets/icons/sleet.png'
+        return '../python/assets/icons/sleet.png'
     elif (weather_id == 615 or weather_id == 616):
-        return 'python/assets/icons/rain-snow.png'
+        return '../python/assets/icons/rain-snow.png'
     elif (weather_id == 602):
-        return 'python/assets/icons/heavy-snow.png'
+        return '../python/assets/icons/heavy-snow.png'
     elif (weather_id >= 600 and weather_id < 700):
-        return 'python/assets/icons/snow.png'
+        return '../python/assets/icons/snow.png'
     elif (weather_id == 781):
-        return 'python/assets/icons/tornado.png'
+        return '../python/assets/icons/tornado.png'
     elif (weather_id >= 700 and weather_id < 800):
-        return 'python/assets/icons/atmosphere.png'
+        return '../python/assets/icons/atmosphere.png'
     else:
-        return 'python/assets/icons/unknown.png'
+        return '../python/assets/icons/unknown.png'
         # 701	Mist	mist	 50d
         # 711	Smoke	Smoke	 50d
         # 721	Haze	Haze	 50d

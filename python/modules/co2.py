@@ -2,7 +2,7 @@ from config import DISPLAY_H, FONT_SM
 import logging
 import math
 
-from util_os import get_absolute_path
+from utils.util_os import get_absolute_path
 import os
 
 def get_co2():

@@ -4,7 +4,7 @@ import textwrap
 
 from PIL import Image, ImageDraw, ImageFont
 
-import epd4in2
+import python.utils.epd4in2 as epd4in2
 from config import DISPLAY_H, DISPLAY_W
 from fonts import NOTO_SANS_MONO, ROBOTO, ROBOTO_ITALIC
 from util_dates import print_last_updated

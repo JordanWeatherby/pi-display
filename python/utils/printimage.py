@@ -3,7 +3,7 @@ import sys
 
 from PIL import Image, ImageDraw
 
-import epd4in2
+import python.utils.epd4in2 as epd4in2
 from config import DISPLAY_H, DISPLAY_W
 from util_logging import set_logging_config
 from util_os import path_exists

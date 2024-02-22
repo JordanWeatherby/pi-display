@@ -1,11 +1,11 @@
 import logging
 import random
 from config import DISPLAY_H, FONT_SM, last_fm
-from util_formatting import get_xsmall_icon
-from util_os import get_absolute_path
-from util_formatting import trim_text
+from utils.util_formatting import get_xsmall_icon
+from utils.util_os import get_absolute_path
+from utils.util_formatting import trim_text
 
-from util_fetch import fetch
+from utils.util_fetch import fetch
 
 LAST_FM_API_KEY = last_fm['api_key']
 USERNAME = last_fm['user_name']
@@ -54,7 +54,7 @@ def get_top_artists():
 
 def draw_artist_info(Himage, draw, start_x, start_y):
     artist_data = get_top_artists()
-    artist_icon = 'python/assets/icons/person.png'
+    artist_icon = '../python/assets/icons/person.png'
 
     if artist_data is not None:
         artist_name = trim_text(artist_data[0], 18)
@@ -70,7 +70,7 @@ def draw_artist_info(Himage, draw, start_x, start_y):
 
 def draw_lastfm_track_info(Himage, draw, start_x, start_y):
     track_data = get_top_tracks()
-    track_icon = 'python/assets/icons/cd.png'
+    track_icon = '../python/assets/icons/cd.png'
 
     if track_data is not None:
 

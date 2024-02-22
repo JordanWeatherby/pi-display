@@ -1,6 +1,6 @@
 import logging
 
-import epd4in2
+import python.utils.epd4in2 as epd4in2
 from util_dates import get_current_date_time
 from util_logging import set_logging_config
 from util_server import is_display_busy, send_status

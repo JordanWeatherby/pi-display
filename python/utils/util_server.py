@@ -2,7 +2,7 @@ import json
 import logging
 import requests
 
-from util_fetch import fetch
+from utils.util_fetch import fetch
 
 status_endpoint = 'http://localhost:3000/api/display-status'
 

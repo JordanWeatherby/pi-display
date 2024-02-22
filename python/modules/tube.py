@@ -1,7 +1,7 @@
 import logging
 from config import FONT_SM
 
-from util_fetch import fetch
+from utils.util_fetch import fetch
 
 
 def fetch_tube_status(lines):

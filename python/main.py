@@ -2,16 +2,16 @@ import logging
 
 from PIL import Image, ImageDraw
 
-import epd4in2
+import utils.epd4in2 as epd4in2
 from config import (DISPLAY_H, DISPLAY_W)
-from co2 import draw_co2
-from last_fm import draw_lastfm_info
-from tube import draw_tube_status
-from util_dates import (get_current_date_time,
+from modules.co2 import draw_co2
+from modules.last_fm import draw_lastfm_info
+from modules.tube import draw_tube_status
+from utils.util_dates import (get_current_date_time,
                         draw_last_updated, draw_todays_date, draw_progress_bar)
-from util_logging import set_logging_config
-from util_server import is_display_busy, send_status
-from weather import draw_weather
+from utils.util_logging import set_logging_config
+from utils.util_server import is_display_busy, send_status
+from modules.weather import draw_weather
 
 set_logging_config()
 
@@ -73,11 +73,3 @@ try:
 except BaseException as e:
     logging.exception("Exception while running refresh script")
     send_status(True, False, str(e))
-
-'''
-if (network['enabled']):
-    print_network_speed()
-
-if (crypto['enabled']):
-    print_crypto_prices()
-'''

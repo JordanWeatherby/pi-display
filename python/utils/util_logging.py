@@ -1,6 +1,6 @@
 import logging
-from util_dates import get_current_short_date_time
-from util_os import get_home_dir, mkdir, path_exists
+from utils.util_dates import get_current_short_date_time
+from utils.util_os import get_home_dir, mkdir, path_exists
 
 def get_log_name():
     # Log by day. Ex. 20220203_main.log
