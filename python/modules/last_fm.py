@@ -55,7 +55,6 @@ def get_top_artists():
 def draw_artist_info(Himage, draw, start_x, start_y):
     artist_data = get_top_artists()
     artist_icon = '../python/assets/icons/person.png'
-
     if artist_data is not None:
         artist_name = trim_text(artist_data[0], 18)
         artist_plays = artist_data[1]
@@ -64,7 +63,7 @@ def draw_artist_info(Himage, draw, start_x, start_y):
             get_absolute_path(artist_icon)), (start_x, start_y + 39))
 
         draw.text((start_x + 23, start_y + 37),
-                  u''+artist_name+' ('+artist_plays+')', font=FONT_SM, fill=0)
+                  artist_name+' ('+artist_plays+')', font=FONT_SM, fill=0)
     else:
         logging.warn('Last.fm artist data was not retrieved.')
 
@@ -81,9 +80,8 @@ def draw_lastfm_track_info(Himage, draw, start_x, start_y):
 
         Himage.paste(get_xsmall_icon(
             get_absolute_path(track_icon)), (start_x, start_y + 21))
-
         draw.text((start_x + 23, start_y + 18),
-                  u''+track_name+' - '+track_artist+' ('+track_plays+')', font=FONT_SM, fill=0)
+                  track_name+' - '+track_artist+' ('+track_plays+')', font=FONT_SM, fill=0)
     else:
         logging.warn('Last.fm track data was not retrieved.')
 

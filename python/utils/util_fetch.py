@@ -5,6 +5,7 @@ import requests
 def fetch(url):
     try:
         r = requests.get(url)
+        r.encoding = 'utf-8'
         return json.loads(r.text)
     except requests.exceptions.RequestException:
         logging.exception('Could not fetch: ' + url)
