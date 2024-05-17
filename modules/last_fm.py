@@ -56,7 +56,7 @@ def get_top_artists():
 
 def draw_artist_info(Himage, draw, start_x, start_y):
     artist_data = get_top_artists()
-    artist_icon = '../python/assets/icons/person.png'
+    artist_icon = '../assets/icons/person.png'
     if artist_data is not None:
         artist_name = trim_text(artist_data[0], 18)
         artist_plays = artist_data[1]
@@ -71,7 +71,7 @@ def draw_artist_info(Himage, draw, start_x, start_y):
 
 def draw_lastfm_track_info(Himage, draw, start_x, start_y):
     track_data = get_top_tracks()
-    track_icon = '../python/assets/icons/cd.png'
+    track_icon = '../assets/icons/cd.png'
 
     if track_data is not None:
 

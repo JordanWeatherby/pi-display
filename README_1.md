@@ -26,20 +26,6 @@ Displays data on a Waveshare 5.83in e-ink display powered by a Raspberry Pi.
     ```
 1. Install the python-dotenv python dependency: `pip install python-dotenv`
 1. Install the Pillow python dependency: `pip install Pillow`
-1. Required for Google Calendar capabilities: Initialize your Google Calendar credentials and token.
-    1. Follow *all* the directions listed in the `Prerequisites` section of the python [Google Calendar API quickstart guide](https://developers.google.com/calendar/api/quickstart/python). You must create a Google Cloud Platform project and OAuth desktop credentials.
-    1. As part of the prerequisites above, you should have [created OAuth credentials](https://developers.google.com/workspace/guides/create-credentials#oauth-client-id) in the Google Cloud Console. Download and save the JSON credentials from the Google Cloud Console as `credentials.json` in the `python` directory of this project. To download the JSON file:
-        1. Go to the [Google Cloud Console](https://console.cloud.google.com/). Make sure you have the correct project selected.
-        1. In the left hamburger menu, select `APIs & Services` then `Credentials`.
-        1. Under `OAuth 2.0 Client IDs`, click the `Download Auth Client` button for your desktop credentials.
-        1. Click `DOWNLOAD JSON`
-        1. Rename the downloaded file to `credentials.json` and move it to this `python` directory.
-    1. Install the gcal libraries: `pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib`
-    1. Run the initialization script. This only needs to be run on first install: `python google_cal_init.py`
-        * Note: this requires browser access as you have to log in through the Google UI. If running your Pi headlessly, run this script on another computer and copy the `token.pickle` file that's generated to your Pi.
-1. Required for Fast CLI capabilities: Install [Fast CLI](https://github.com/sindresorhus/fast-cli) cli (`npm install --global fast-cli`)
-
-This project was specificially built for the [Waveshare 5.83inch e-Paper HAT](https://www.waveshare.com/wiki/5.83inch_e-Paper_HAT).
 
 ## Configuration
 
