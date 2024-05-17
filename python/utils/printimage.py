@@ -10,7 +10,7 @@ from util_os import path_exists
 from util_server import send_status
 
 PREFIX = 'Image Display: '
-IMAGE_DIR = ''#'../webapp/'
+IMAGE_DIR = ''  # '../webapp/'
 
 set_logging_config()
 
@@ -19,8 +19,8 @@ def get_resized_image(image):
     width = image.width
     new_width = width
     new_height = height
-    logging.info("New height: " + str(new_height) + ", New width: " + str(new_height));
-    
+    logging.info("New height: " + str(new_height) + ", New width: " + str(new_height))
+
     # If image is smaller than display, no resize is needed
     if (height <= DISPLAY_H and width <= DISPLAY_W):
         logging.info("Original image is smaller than display")
@@ -37,9 +37,10 @@ def get_resized_image(image):
             ratio = width / DISPLAY_W
             new_width = DISPLAY_W
             new_height = round(height / ratio)
-    
-    logging.info("New height: " + str(new_height) + ", New width: " + str(new_height));
+
+    logging.info("New height: " + str(new_height) + ", New width: " + str(new_height))
     return image.resize((new_width, new_height))
+
 
 logging.info("********* Initializing image refresh *********")
 if (len(sys.argv) > 1):

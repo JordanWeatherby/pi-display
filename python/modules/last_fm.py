@@ -21,11 +21,13 @@ PERIOD = random.choice(list(PERIODS))
 
 
 def fetch_top_tracks(period):
-    return fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&api_key='+LAST_FM_API_KEY+'&user='+USERNAME+'&format=json&limit=1&period='+period)
+    return fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&api_key=' +
+                 LAST_FM_API_KEY + '&user=' + USERNAME + '&format=json&limit=1&period=' + period)
 
 
 def fetch_top_artists(period):
-    return fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&api_key='+LAST_FM_API_KEY+'&user='+USERNAME+'&format=json&limit=1&period='+period)
+    return fetch('http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&api_key=' +
+                 LAST_FM_API_KEY + '&user=' + USERNAME + '&format=json&limit=1&period=' + period)
 
 
 def get_top_tracks():
@@ -63,7 +65,7 @@ def draw_artist_info(Himage, draw, start_x, start_y):
             get_absolute_path(artist_icon)), (start_x, start_y + 39))
 
         draw.text((start_x + 23, start_y + 37),
-                  artist_name+' ('+artist_plays+')', font=FONT_SM, fill=0)
+                  artist_name + ' (' + artist_plays + ')', font=FONT_SM, fill=0)
     else:
         logging.warn('Last.fm artist data was not retrieved.')
 
@@ -80,20 +82,18 @@ def draw_lastfm_track_info(Himage, draw, start_x, start_y):
 
         Himage.paste(get_xsmall_icon(
             get_absolute_path(track_icon)), (start_x, start_y + 21))
-        draw.text((start_x + 23, start_y + 18),
-                  track_name+' - '+track_artist+' ('+track_plays+')', font=FONT_SM, fill=0)
+        draw.text((start_x + 23, start_y + 18), track_name + ' - ' +
+                  track_artist + ' (' + track_plays + ')', font=FONT_SM, fill=0)
     else:
         logging.warn('Last.fm track data was not retrieved.')
 
 def draw_lastfm_info(Himage, draw):
-    
+
     start_x = 1
     start_y = DISPLAY_H - 74
-    
 
     period_name = PERIODS[PERIOD]
     draw.text((start_x + 5, start_y),
-                  period_name+':', font=FONT_SM, fill=0)
+              period_name + ':', font=FONT_SM, fill=0)
     draw_lastfm_track_info(Himage, draw, start_x, start_y)
     draw_artist_info(Himage, draw, start_x, start_y)
-

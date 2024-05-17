@@ -12,24 +12,30 @@ def get_gcal_data(gcal_id):
     try:
         creds = get_gcal_creds()
         service = build('calendar', 'v3', credentials=creds)
-        
+
         # Format start and end dates
-        timezone_offset = 5 # EST 
+        timezone_offset = 5  # EST
         rightnow = datetime.utcnow()
         corrected_hour = rightnow.hour + timezone_offset
         if (corrected_hour > 23):
             corrected_hour -= 24
         now = rightnow.replace(hour=corrected_hour)
         now_str = now.isoformat() + 'Z'  # 'Z' indicates UTC time
-        eod = now.replace(day=(now.day+1), hour=timezone_offset, minute=0, second=0, microsecond=0)
+        eod = now.replace(
+            day=(
+                now.day + 1),
+            hour=timezone_offset,
+            minute=0,
+            second=0,
+            microsecond=0)
         eod_str = eod.isoformat() + 'Z'
         logging.info("Google calendar - Start: " + now_str + ", End: " + eod_str)
 
         # Call the Calendar API
-        events_result = service.events().list(calendarId=gcal_id, 
-                                            timeMin=now_str, timeMax=eod_str,
-                                            maxResults=1, singleEvents=True,
-                                            orderBy='startTime').execute()
+        events_result = service.events().list(calendarId=gcal_id,
+                                              timeMin=now_str, timeMax=eod_str,
+                                              maxResults=1, singleEvents=True,
+                                              orderBy='startTime').execute()
         events = events_result.get('items', [])
 
         if not events:
@@ -40,7 +46,8 @@ def get_gcal_data(gcal_id):
 
         # Check if event has a start time (all day events only have 'date' key)
         if 'dateTime' in event['start']:
-            time = datetime.strptime(event['start']['dateTime'], '%Y-%m-%dT%H:%M:%S%z').strftime(' @ %-I:%M%p').lower()
+            time = datetime.strptime(event['start']['dateTime'],
+                                     '%Y-%m-%dT%H:%M:%S%z').strftime(' @ %-I:%M%p').lower()
 
         # Return first event name and time (if applicable)
         return event['summary'] + time

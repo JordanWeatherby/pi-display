@@ -40,6 +40,7 @@ def print_msg_on_display(draw, msg):
     y = (DISPLAY_H - y) / 2
     draw.multiline_text((x, y), centered_text, font=FONT_LG, fill=0)
 
+
 logging.info("********* Initializing message refresh *********")
 if (len(sys.argv) > 1):
     msg = sys.argv[1]
@@ -58,7 +59,7 @@ if (len(sys.argv) > 1):
 
         epd.display(epd.getbuffer(Himage))
         epd.sleep()
-        
+
         end_msg = 'Message printed'
         logging.info(end_msg)
         send_status(False, False, PREFIX + end_msg)

@@ -55,7 +55,7 @@ def days_in_year():
 
 
 def get_year_percentage():
-    return (datetime.today().timetuple().tm_yday/days_in_year())
+    return (datetime.today().timetuple().tm_yday / days_in_year())
 
 # Print last updated date + time in bottom right of screen
 
@@ -80,7 +80,7 @@ def draw_todays_date(draw):
 
 def draw_progress_bar(draw):
     percentage = get_year_percentage()
-    percentageText = str(int(percentage*100))+'%'
+    percentageText = str(int(percentage * 100)) + '%'
     text_width, text_height = FONT_SM.getsize(percentageText)
     text_pad = 10
 
@@ -91,7 +91,7 @@ def draw_progress_bar(draw):
 
     draw.rectangle((start_x, start_y, start_x + width,
                    start_y + height), fill=None, outline=0, width=1)
-    draw.rectangle((start_x, start_y, start_x + (width*percentage),
+    draw.rectangle((start_x, start_y, start_x + (width * percentage),
                    start_y + height), fill=0, outline=0, width=1)
-    draw.text((start_x + width + (text_pad/2), start_y),
+    draw.text((start_x + width + (text_pad / 2), start_y),
               percentageText, font=FONT_SM, anchor='lt', fill=0)

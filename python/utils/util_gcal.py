@@ -33,23 +33,25 @@ def get_gcal_creds():
             else:
                 creds_file = get_absolute_path(creds_path)
                 if path_exists(creds_file):
-                    flow = InstalledAppFlow.from_client_secrets_file(get_absolute_path(creds_file), SCOPES)
+                    flow = InstalledAppFlow.from_client_secrets_file(
+                        get_absolute_path(creds_file), SCOPES)
                     creds = flow.run_local_server(port=0)
                 else:
-                    error_msg = 'Credentials file (' + creds_file + ') is missing. Download and save your credentials files from the Google Cloud Console to this directory.'
+                    error_msg = 'Credentials file (' + creds_file + \
+                        ') is missing. Download and save your credentials files from the Google Cloud Console to this directory.'
                     print(error_msg)
                     logging.error(error_msg)
                     return None
             # Save the credentials for the next run
             with open(get_absolute_path(token_file), 'wb') as token:
                 pickle.dump(creds, token)
-    
+
     except HttpError as error:
         logging.exception('Could not get Google Calendar credentials')
-        
+
     except BaseException as e:
         logging.exception(str(e))
-        
+
     return creds
 
 def is_credential_valid(creds):

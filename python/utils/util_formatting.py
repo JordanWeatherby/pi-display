@@ -48,7 +48,7 @@ def get_sm_text_wrap(text):
 
 
 def trim_text(text, width):
-    # +2 is because something like trim_text("test", 3) 
+    # +2 is because something like trim_text("test", 3)
     # Can get split to "tes.." which doesn't make sense
     if len(text) > width + 2:
         return text[:width] + '..'
@@ -75,4 +75,4 @@ def get_height_of_sm_multiline_text(text):
 
 def get_x_for_centered_text(text, font, x_start, x_end):
     width, height = font.getsize(text)
-    return round((x_end - x_start)/2) - round(width/2) + x_start
+    return round((x_end - x_start) / 2) - round(width / 2) + x_start
