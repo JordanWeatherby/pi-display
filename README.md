@@ -33,34 +33,6 @@ This set-up guide assumes you are running Raspbian on your Pi and have already s
 
     ```@reboot sleep 30 && cd /home/pi/repos/pi-display/python && python3 main.py &```
 
-1. Run `npm install` and `npm run build` from in the `webapp` directory.
-
-1. To launch the web app on Pi start-up, enter the command `crontab -e` to edit the crontab file. Then save the following line in the file (replace the paths with your Pi's paths):
-
-    ```@reboot sleep 30 && cd /home/pi/repos/pi-display/webapp && /home/pi/.nvm/versions/node/v14.18.2/bin/node server.js >> /home/pi/logs/server.log 2>&1 &```
-
-1. Set up a [static IP address](https://thepihut.com/blogs/raspberry-pi-tutorials/how-to-give-your-raspberry-pi-a-static-ip-address-update) for your Pi.
-
-1. Install Apache web server on your pi: `sudo apt-get install -y apache2`
-
-1. Update the Apache configuration file to proxy port 3000 requests. This will allow access to the webapp at the Pi's direct IP. Open the file:
-
-    ```sudo nano /etc/apache2/sites-available/000-default.conf```
-    
-    then append the following within `<VirtualHost *:80>` under the `DocumentRoot /var/www/html` line:
-
-    ```
-    ProxyRequests off
-    <Proxy *>
-            Order deny,allow
-            Allow from all
-    </Proxy>
-    <Location />
-            ProxyPass http://localhost:3000/
-            ProxyPassReverse https://localhost:3000/
-    </Location>
-    ```
-
 1. Reboot the Pi for all updates to take effect.
 
 ## Notes
