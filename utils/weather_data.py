@@ -1,6 +1,6 @@
 class WeatherData():
-    sunrise_icon = "../assets/icons/sunrise.png"
-    sunset_icon = "../assets/icons/sunset.png"
+    sunrise_icon = "assets/icons/sunrise.png"
+    sunset_icon = "assets/icons/sunset.png"
     forecast = []
 
     def __init__(self):

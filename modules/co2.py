@@ -12,7 +12,7 @@ def read_file():
     # about 200 minutes of data per graph
     num_lines = 1200
 
-    lines = os.popen('tail -n {} ../../co2.log'.format(num_lines)).read()
+    lines = os.popen('tail -n {} ../co2.log'.format(num_lines)).read()
     # If the list is empty, return None
     if not lines:
         return None

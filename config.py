@@ -32,21 +32,21 @@ FONT_SM_SIZE = 15
 FONT_MD_SIZE = 18
 FONT_LG_SIZE = 30
 FONT_ITALIC_SM = ImageFont.truetype(get_absolute_path(
-    '../assets/fonts/Roboto-Italic.ttf'), FONT_SM_SIZE)
+    'assets/fonts/Roboto-Italic.ttf'), FONT_SM_SIZE)
 FONT_ITALIC = ImageFont.truetype(get_absolute_path(
-    '../assets/fonts/Roboto-Italic.ttf'), FONT_MD_SIZE)
+    'assets/fonts/Roboto-Italic.ttf'), FONT_MD_SIZE)
 # FONT_SM = ImageFont.truetype(get_absolute_path(
 #     'assets/fonts/Roboto-Regular.ttf'), FONT_SM_SIZE)
 # FONT_MD = ImageFont.truetype(get_absolute_path('assets/fonts/Roboto-Regular.ttf'), FONT_MD_SIZE)
 FONT_SM = ImageFont.truetype(get_absolute_path(
-    '../assets/fonts/Alegreya-Regular.ttf'), FONT_SM_SIZE)
+    'assets/fonts/Alegreya-Regular.ttf'), FONT_SM_SIZE)
 FONT_MD = ImageFont.truetype(get_absolute_path(
-    '../assets/fonts/Alegreya-Regular.ttf'), FONT_MD_SIZE)
+    'assets/fonts/Alegreya-Regular.ttf'), FONT_MD_SIZE)
 FONT_LG = ImageFont.truetype(get_absolute_path(
-    '../assets/fonts/Roboto-Regular.ttf'), FONT_LG_SIZE)
+    'assets/fonts/Roboto-Regular.ttf'), FONT_LG_SIZE)
 
 FONT_PIXEL = ImageFont.truetype(get_absolute_path(
-    '../assets/fonts/SUBWT.ttf'), FONT_MD_SIZE)
+    'assets/fonts/SUBWT.ttf'), FONT_MD_SIZE)
 ICON_SIZE_SM = 40
 ICON_SIZE_XS = 18
 PADDING = 10
