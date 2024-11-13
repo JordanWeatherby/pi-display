@@ -106,7 +106,7 @@ def draw_todays_date(draw):
 def draw_progress_bar(draw):
     percentage = get_year_percentage()
     percentage_text = str(int(percentage * 100)) + "%"
-    text_width = FONT_SM.getsize(percentage_text)
+    text_width, text_height = FONT_SM.getsize(percentage_text)
     text_pad = 10
 
     height = 10
