@@ -1,4 +1,4 @@
-class WeatherData():
+class WeatherData:
     sunrise_icon = "assets/icons/sunrise.png"
     sunset_icon = "assets/icons/sunset.png"
     forecast = []
@@ -81,7 +81,7 @@ class WeatherData():
         self.forecast.append(day)
 
 
-class WeatherDay():
+class WeatherDay:
     def __init__(self):
         self.icon = ""
         self.day = ""

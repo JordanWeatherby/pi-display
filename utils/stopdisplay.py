@@ -4,5 +4,5 @@ import logging
 
 set_logging_config()
 
-logging.info('********* Forcing status clear *********')
+logging.info("********* Forcing status clear *********")
 send_status(True, False, "Forced status clear.")
