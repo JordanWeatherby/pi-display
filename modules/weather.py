@@ -33,7 +33,7 @@ def get_weather_data():
         weather.current_icon = get_weather_icon(weather_id)  # Current weather icon
         # Current weather short description (ex. 'Clouds')
         weather.current_desc = results["weather"][0]["main"]
-        weather.current_temp = str(round(results["main"]["temp"])) + "°C"
+        weather.current_temp = str(round(results["main"]["temp"])) + "°"
 
         weather.sunrise = get_time_from_ms(
             results["sys"]["sunrise"] + results["timezone"]
@@ -126,7 +126,7 @@ def draw_weather(Himage, draw):
             )
         logging.info("current temp: " + weather_data.current_temp)
         draw.text(
-            (x + 60, y), weather_data.current_temp, font=FONT_LG, fill=0
+            (x + 60, y + 5), weather_data.current_temp, font=FONT_LG, fill=0
         )  # Current temperature
 
         x = 180
@@ -135,7 +135,7 @@ def draw_weather(Himage, draw):
             get_small_icon(get_absolute_path(weather_data.get_sunrise_icon())), (x, y)
         )  # Sunrise icon
         draw.text(
-            (x + ICON_SIZE_SM + PADDING_SM, y + 15),
+            (x + ICON_SIZE_SM + PADDING_SM, y + PADDING),
             weather_data.sunrise,
             font=FONT_MD,
             fill=0,
