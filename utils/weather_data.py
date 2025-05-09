@@ -6,6 +6,7 @@ class WeatherData:
     def __init__(self):
         self.current = ""
         self.current_temp = ""
+        self.current_humidity = ""
         self.current_icon = ""
         self.current_icon_id = ""
         self.current_desc = ""
@@ -27,6 +28,14 @@ class WeatherData:
     @current_temp.setter
     def current_temp(self, a):
         self._current_temp = a
+
+    @property
+    def current_humidity(self):
+        return self._current_humidity
+
+    @current_humidity.setter
+    def current_humidity(self, a):
+        self._current_humidity = a
 
     @property
     def current_icon(self):

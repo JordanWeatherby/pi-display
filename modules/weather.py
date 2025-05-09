@@ -30,10 +30,11 @@ def get_weather_data():
         weather_id = results["weather"][0]["id"]
 
         weather.current_icon_id = str(weather_id)
-        weather.current_icon = get_weather_icon(weather_id)  # Current weather icon
+        weather.current_icon = get_weather_icon(weather_id)
         # Current weather short description (ex. 'Clouds')
         weather.current_desc = results["weather"][0]["main"]
         weather.current_temp = str(round(results["main"]["temp"])) + "°"
+        weather.current_humidity = str(results["main"]["humidity"]) + "%"
 
         weather.sunrise = get_time_from_ms(
             results["sys"]["sunrise"] + results["timezone"]
@@ -126,8 +127,13 @@ def draw_weather(Himage, draw):
             )
         logging.info("current temp: " + weather_data.current_temp)
         draw.text(
-            (x + 60, y + 5), weather_data.current_temp, font=FONT_LG, fill=0
+            (x + 60, y - 5), weather_data.current_temp, font=FONT_LG, fill=0
         )  # Current temperature
+
+        logging.info("current humidity: " + weather_data.current_humidity)
+        draw.text(
+            (x + 65, y + 25), weather_data.current_humidity, font=FONT_MD, fill=0
+        )  # Humidity
 
         x = 180
         y = 80
