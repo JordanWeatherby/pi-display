@@ -24,6 +24,7 @@ last_fm = {
 }
 
 google_cal = {"enabled": False, "cal_id": get_env_var(GCAL_ENV_VAR)}
+TUBE_LINES = ["northern", "victoria"]
 FONT_SM_SIZE = 15
 FONT_MD_SIZE = 18
 FONT_LG_SIZE = 30
