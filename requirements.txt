@@ -1,0 +1,6 @@
+python-dotenv
+Pillow
+requests
+
+# Hardware-specific dependencies (RPi.GPIO, spidev, Jetson.GPIO) are not included here.
+# You may need to install them separately depending on your hardware.

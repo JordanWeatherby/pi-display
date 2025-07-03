@@ -17,7 +17,12 @@ The display currently shows:
 ## Prerequisites 
 
 1. Install python 3.7+
-1. Copy `.env.example` as `.env` and add your OpenWeatherMap and Last.fm api keys
+2. Install project dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+   *Note: Hardware-specific libraries (like `RPi.GPIO`, `spidev`, `Jetson.GPIO`) are not included in `requirements.txt`. You may need to install them separately depending on your Raspberry Pi or Jetson Nano setup.*
+3. Copy `.env.example` as `.env` and add your OpenWeatherMap and Last.fm API keys
 
 ## Pi Set Up
 
