@@ -10,7 +10,7 @@ The display currently shows:
 - Sunrise/sunset
 - London underground line status
 - CO2 monitoring
-- Last.fm data that cycles between 
+- Last.fm data that cycles between time periods (week/month/year etc.) to display top track and artist in that time
 
 ![Photo of the Pi display displaying all data](assets/pi-display.jpg)
 
