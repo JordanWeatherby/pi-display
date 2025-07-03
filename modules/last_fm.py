@@ -22,9 +22,11 @@ PERIODS = {
 PERIOD = random.choice(list(PERIODS))
 
 
-def fetch_top_tracks(period):
+def fetch_lastfm_data(method, period):
     return fetch(
-        "http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&api_key="
+        "http://ws.audioscrobbler.com/2.0/?method="
+        + method
+        + "&api_key="
         + LAST_FM_API_KEY
         + "&user="
         + USERNAME
@@ -33,85 +35,59 @@ def fetch_top_tracks(period):
     )
 
 
-def fetch_top_artists(period):
-    return fetch(
-        "http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&api_key="
-        + LAST_FM_API_KEY
-        + "&user="
-        + USERNAME
-        + "&format=json&limit=1&period="
-        + period
-    )
+def get_lastfm_data(data_type):
+    if data_type == "track":
+        results = fetch_lastfm_data("user.gettoptracks", PERIOD)
+        if results is None:
+            return None
+        top_data = results["toptracks"]["track"][0]
+        name = top_data["name"]
+        artist = top_data["artist"]["name"]
+        plays = top_data["playcount"]
+        return {"name": name, "artist": artist, "plays": plays}
+    elif data_type == "artist":
+        results = fetch_lastfm_data("user.gettopartists", PERIOD)
+        if results is None:
+            return None
+        top_data = results["topartists"]["artist"][0]
+        name = top_data["name"]
+        plays = top_data["playcount"]
+        return {"name": name, "plays": plays}
+    return None
 
 
-def get_top_tracks():
-    results = fetch_top_tracks(PERIOD)
+def _draw_lastfm_item(Himage, draw, start_x, start_y, icon_path, data, is_track=False):
+    if data is not None:
+        name = trim_text(data["name"], 18)
+        plays = data["plays"]
+        text = f"{name} ({plays})"
+        if is_track:
+            artist = trim_text(data["artist"], 18)
+            text = f"{name} - {artist} ({plays})"
 
-    if results is None:
-        return None
-
-    top_tracks = results["toptracks"]
-    track_name = top_tracks["track"][0]["name"]
-    track_artist = top_tracks["track"][0]["artist"]["name"]
-    track_plays = top_tracks["track"][0]["playcount"]
-    return [track_name, track_artist, track_plays]
-
-
-def get_top_artists():
-    results = fetch_top_artists(PERIOD)
-
-    if results is None:
-        return None
-
-    top_artists = results["topartists"]
-    artist_name = top_artists["artist"][0]["name"]
-    artist_plays = top_artists["artist"][0]["playcount"]
-    return [artist_name, artist_plays]
+        Himage.paste(
+            get_xsmall_icon(get_absolute_path(icon_path)), (start_x, start_y)
+        )
+        draw.text(
+            (start_x + 23, start_y - 3),
+            text,
+            font=FONT_SM,
+            fill=0,
+        )
+    else:
+        logging.warning("Last.fm data was not retrieved.")
 
 
 def draw_artist_info(Himage, draw, start_x, start_y):
-    artist_data = get_top_artists()
+    artist_data = get_lastfm_data("artist")
     artist_icon = "assets/icons/person.png"
-    if artist_data is not None:
-        artist_name = trim_text(artist_data[0], 18)
-        artist_plays = artist_data[1]
-
-        Himage.paste(
-            get_xsmall_icon(get_absolute_path(artist_icon)), (start_x, start_y + 39)
-        )
-
-        draw.text(
-            (start_x + 23, start_y + 37),
-            artist_name + " (" + artist_plays + ")",
-            font=FONT_SM,
-            fill=0,
-        )
-    else:
-        logging.warn("Last.fm artist data was not retrieved.")
+    _draw_lastfm_item(Himage, draw, start_x, start_y, artist_icon, artist_data)
 
 
 def draw_lastfm_track_info(Himage, draw, start_x, start_y):
-    track_data = get_top_tracks()
+    track_data = get_lastfm_data("track")
     track_icon = "assets/icons/cd.png"
-
-    if track_data is not None:
-
-        track_artist = trim_text(track_data[1], 18)
-        track_plays = track_data[2]
-
-        track_name = trim_text(track_data[0], 18)
-
-        Himage.paste(
-            get_xsmall_icon(get_absolute_path(track_icon)), (start_x, start_y + 21)
-        )
-        draw.text(
-            (start_x + 23, start_y + 18),
-            track_name + " - " + track_artist + " (" + track_plays + ")",
-            font=FONT_SM,
-            fill=0,
-        )
-    else:
-        logging.warn("Last.fm track data was not retrieved.")
+    _draw_lastfm_item(Himage, draw, start_x, start_y, track_icon, track_data, is_track=True)
 
 
 def draw_lastfm_info(Himage, draw):
@@ -121,5 +97,5 @@ def draw_lastfm_info(Himage, draw):
 
     period_name = PERIODS[PERIOD]
     draw.text((start_x + 5, start_y), period_name + ":", font=FONT_SM, fill=0)
-    draw_lastfm_track_info(Himage, draw, start_x, start_y)
-    draw_artist_info(Himage, draw, start_x, start_y)
+    draw_lastfm_track_info(Himage, draw, start_x, start_y + 21)
+    draw_artist_info(Himage, draw, start_x, start_y + 39)
