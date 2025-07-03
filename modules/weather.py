@@ -46,13 +46,15 @@ def get_weather_data():
 
 
 def fetch_weather_data():
-    api_key = weather["api_key"]
-    if api_key:
+    api_key = weather.get("api_key")
+    lat = weather.get("lat")
+    lon = weather.get("lon")
+    if api_key is not None and lat is not None and lon is not None:
         return fetch(
             "https://api.openweathermap.org/data/2.5/weather?lat="
-            + weather.get("lat")
+            + lat
             + "&lon="
-            + weather.get("lon")
+            + lon
             + "&units=metric"
             + "&appid="
             + api_key
@@ -61,7 +63,7 @@ def fetch_weather_data():
         logging.error(
             "Open Weather Map API key ("
             + weather.get("env_var")
-            + ") is not defined in environment variables."
+            + ") or lat/long is not defined in environment variables."
         )
         return None
 

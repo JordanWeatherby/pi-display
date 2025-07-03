@@ -8,14 +8,13 @@ load_dotenv()
 
 WEATHER_ENV_VAR = "OWM_API_KEY"
 GCAL_ENV_VAR = "GOOGLE_CALENDAR_ID"
-LOCATION_LAT, LOCATION_LON = get_env_var("LOCATION_LAT_LON").split(",")
 
 weather = {
     "enabled": True,
     "api_key": get_env_var(WEATHER_ENV_VAR),
     "env_var": WEATHER_ENV_VAR,
-    "lon": LOCATION_LON,
-    "lat": LOCATION_LAT,
+    "lon": get_env_var("LOCATION_LON"),
+    "lat": get_env_var("LOCATION_LAT"),
     "units": "metric",  # 'standard', 'metric' or 'imperial'
 }
 
